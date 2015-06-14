@@ -1,0 +1,38 @@
+@(title: String)(content: Html)
+@*****************
+ LOCATE REQUIRE JS FILE
+******************@
+@locateRequireJs(name: String) = @{
+    routes.WebJarAssets.at(WebJarAssets.locate(name).substring(0, WebJarAssets.locate(name).size - 3))
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" href="@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("less/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+    </head>
+    <body>
+        <div class="container">
+            @content
+        </div>
+        <script src="@routes.WebJarAssets.at(WebJarAssets.locate("require.min.js"))"></script>
+        <script>
+            requirejs.config({
+                paths: {
+                    jquery: "@locateRequireJs("jquery.min.js")",
+                    bootstrap: "@locateRequireJs("bootstrap.min.js")"
+                },
+                shim: {
+                    bootstrap: []
+                }
+            });
+            define("main", ["jquery"], function ($) {
+                requirejs(["@routes.Assets.at("main.js")"])
+            });
+            requirejs(["main"]);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+user.create.title = Create an user
+user.create.submit = Submit
+user.create.password = Password
+user.create.repeat_password = Repeat password
+user.create.name = Name
+user.create.surname = Surname
+user.create.email = Email
+user.create.success = User was generated successfully
+
+error.email = Please enter valid email!
+error.user_email_exists = This {0} email is already registered in system please choose other one!
+error.required = Field {0} is required!
+error.general = Please fix following errors!
+error.repeat_password = Password and Repeat password are not the same!
+
+

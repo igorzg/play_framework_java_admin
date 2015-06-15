@@ -1,15 +1,11 @@
 package models;
 
-import play.api.data.validation.ValidationError;
-import play.db.ebean.Model;
-
+import com.avaje.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
 import play.data.validation.Constraints;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * User model
@@ -22,6 +18,7 @@ public class User extends Model {
     public String name;
     @Constraints.Required
     public String surname;
+
     @Constraints.Required
     @Constraints.Email
     public String email;
@@ -53,6 +50,9 @@ public class User extends Model {
         return new Model.Finder(String.class, User.class).all();
     }
 
+    public static User getUserByEmail(String email) {
+        return User.find.where().eq("email", email).findUnique();
+    }
     public static Boolean exists(String email) {
         return User.find.where().eq("email", email).findRowCount() > 0;
     }

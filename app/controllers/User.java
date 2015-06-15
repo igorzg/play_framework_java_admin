@@ -7,14 +7,14 @@ import play.i18n.Messages;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import views.html.user.*;
 /**
- * Represents logic for user CRUD
+ * Represents logic for User CRUD
  */
 public class User extends Core {
     
     /**
-     * Display user create form
+     * Display User create form
      * @return
      */
     public static Result create() {
@@ -64,8 +64,7 @@ public class User extends Core {
             }
         }
 
-        return ok(views.html.user.create.render(errors, formData, message));
+        return ok(create.render(errors, formData, message));
     }
-
 
 }

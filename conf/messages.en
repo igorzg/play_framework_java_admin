@@ -6,6 +6,9 @@ user.create.name = Name
 user.create.surname = Surname
 user.create.email = Email
 user.create.success = User was generated successfully
+user.login.title = Authenticate user
+user.login = Login
+user.logout = You have ben logged out!
 
 error.email = Please enter valid email!
 error.user_email_exists = This {0} email is already registered in system please choose other one!

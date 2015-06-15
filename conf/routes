@@ -3,14 +3,20 @@
 # ~~~~
 
 # Home page
-GET         /                     controllers.Application.index
+GET         /                     controllers.Core.index
+
+GET         /logout               controllers.Auth.logout
+
+GET         /login                controllers.Auth.login
+POST        /login                controllers.Auth.login
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file         controllers.Assets.at(path="/public", file)
 GET         /webjars/*file        controllers.WebJarAssets.at(file)
 
 # User pages
-GET         /user/create          controllers.User.create()
-POST        /user/create          controllers.User.create()
+GET         /user/create          controllers.User.create
+POST        /user/create          controllers.User.create
 
     

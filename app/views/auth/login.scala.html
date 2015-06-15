@@ -1,0 +1,52 @@
+@import layouts._
+@import play.i18n._
+@import java.util.List
+@import java.util.Map
+@import play.data.validation.ValidationError
+
+@(errors: Map[String, List[ValidationError]], formData: Map[String, String])
+
+@formInput(formType: String, name: String) = {
+    <div class="form-group">
+        <label for="@name">@Messages.get("user.create." + name)</label>
+        @if(formData.get(name)) {
+            <input type="@formType" id="@name" name="@name" value="@formData.get(name)" class="form-control" />
+        } else {
+            <input type="@formType" id="@name" name="@name" class="form-control" />
+        }
+    </div>
+}
+
+@*******************
+CREATE FORM -> THIS IS HOW YOU WRITE COMMENTS IN SCALA TEMPLATES
+********************@
+
+@main(Messages.get("user.login.title")) {
+    <div class="panel panel-default mv-login">
+
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-User"></span>
+            @Messages.get("user.login.title")
+        </div>
+        <div class="center-block">
+
+            @if(!errors.isEmpty()) {
+                <div class="alert alert-danger" role="alert">
+                    <ul class="errors">
+                    @for(item <- errors.values()) {
+                        @for(error <- item) {
+                            <li>@Messages.get(error.message(), Messages.get("user.create." + error.key()))</li>
+                        }
+                    }
+                    </ul>
+                </div>
+            }
+
+            <form action="@routes.Auth.login()" method="post">
+                @formInput("email", "email")
+                @formInput("password", "password")
+                <button class="btn btn-primary">@Messages.get("user.login")</button>
+            </form>
+        </div>
+    </div>
+}

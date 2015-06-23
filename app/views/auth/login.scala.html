@@ -8,7 +8,7 @@
 
 @formInput(formType: String, name: String) = {
     <div class="form-group">
-        <label for="@name">@Messages.get("user.create." + name)</label>
+        <label for="@name">@Messages.get("user.login." + name)</label>
         @if(formData.get(name)) {
             <input type="@formType" id="@name" name="@name" value="@formData.get(name)" class="form-control" />
         } else {
@@ -43,7 +43,7 @@ CREATE FORM -> THIS IS HOW YOU WRITE COMMENTS IN SCALA TEMPLATES
             }
 
             <form action="@routes.Auth.login()" method="post">
-                @formInput("email", "email")
+                @formInput("text", "username")
                 @formInput("password", "password")
                 <button class="btn btn-primary">@Messages.get("user.login")</button>
             </form>

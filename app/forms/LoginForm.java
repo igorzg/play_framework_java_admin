@@ -9,8 +9,7 @@ import java.util.Map;
  */
 public class LoginForm {
     @Constraints.Required
-    @Constraints.Email
-    public String email;
+    public String username;
     @Constraints.Required
     public String password;
 
@@ -20,9 +19,9 @@ public class LoginForm {
      * @return boolean if user is authenticated
      */
     public static Boolean authenticate(Map<String, String> formData) {
-        String email = formData.get("email");
+        String username = formData.get("username");
         String password = formData.get("password");
-        User user = User.getUserByEmail(email);
+        User user = User.getUser(username);
         return user != null && user.getPassword().equals(password);
     }
 }

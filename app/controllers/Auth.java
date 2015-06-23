@@ -22,6 +22,7 @@ public class Auth extends Controller {
         if (!haveUsers) {
             User user = new models.User();
             user.email = "admin@igorivanovic.info";
+            user.username = "admin";
             user.name = "Igor";
             user.surname = "Ivanovic";
             user.password = "admin";
@@ -52,7 +53,7 @@ public class Auth extends Controller {
             System.out.print(errors.toString());
 
             if (!submitedForm.hasErrors() && LoginForm.authenticate(formData)) {
-                session("email", formData.get("email"));
+                session("username", formData.get("username"));
                 return redirect(routes.Core.index());
             }
 

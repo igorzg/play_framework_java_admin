@@ -32,13 +32,14 @@ public class User extends Core {
 
             if (!formData.get("password").equals(formData.get("repeat_password"))) {
                 submitedForm.reject(new ValidationError("password", Messages.get("error.repeat_password")));
-            } else if (models.User.exists(formData.get("email"))) {
+            } else if (models.User.exists(formData.get("email"), formData.get("username"))) {
                 submitedForm.reject(
                         new ValidationError(
                                 "email",
                                 Messages.get(
-                                        "error.user_email_exists",
-                                        Messages.get("user.create.email")
+                                        "error.user_exists",
+                                        formData.get("email"),
+                                        formData.get("username")
                                 )
                         )
                 );

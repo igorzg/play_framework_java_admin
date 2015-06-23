@@ -48,6 +48,7 @@ CREATE FORM -> THIS IS HOW YOU WRITE COMMENTS IN SCALA TEMPLATES
             <form action="@routes.User.create()" method="post">
                 @formInput("text", "name")
                 @formInput("text", "surname")
+                @formInput("text", "username")
                 @formInput("email", "email")
                 @formInput("password", "password")
                 @formInput("password", "repeat_password")
